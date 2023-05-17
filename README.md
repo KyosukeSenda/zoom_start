@@ -6,5 +6,5 @@
 (4) Compile "ZoomStart.java" and run a generated class file.   
 
 ## For Mac users
-You may not be able to use .cmd file.  
+.cmd file may not be available.  
 Please rewrite it with .sh file, for example.
