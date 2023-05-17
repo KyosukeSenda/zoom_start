@@ -9,10 +9,11 @@ import java.util.Date;
 
 public class ZoomStart{
     public static void main(String[] args) throws ParseException {
-        scheduleDate();
+        String scheduledTime = "08:20:00"; // (TO DO) Set time you enter the meeting room.(Format: "HH:mm:ss")
+        scheduledDate(scheduledTime);
     }
 
-    public static void scheduleDate() throws ParseException {
+    public static void scheduledDate(String scheduledTime) throws ParseException {
         Timer timer = new Timer(false);
         LocalTime lTime = LocalTime.now();
         String sTime = lTime.toString();
@@ -21,30 +22,30 @@ public class ZoomStart{
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd");
         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String scheduledDate;
-        String cmdFileDir = "{cmd file pass}"; // (1) Put your cmd file pass here.
-        String scheduledTime = " 08:35:00"; // (2) Set time you would like to enter the Zoom meeting.(Format: "_HH:mm:ss")
-
+        String cmdFileDir = "zoom_start.cmd";
         TimerTask task = new TimerTask(){
+            @Override
             public void run(){
                 try {
                     ProcessBuilder pb = new ProcessBuilder();
-                    pb.command(); 
+                    pb.command(cmdFileDir);
                     pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
                     pb.redirectError(ProcessBuilder.Redirect.INHERIT);
-
                     Process process = pb.start();
                     timer.cancel();
-                    } catch(IOException e) {
-                        System.err.println(e.getMessage());
+                } catch(IOException e) {
+                    System.err.println(e.getMessage());
                 }
             }
         };
 
+        
         cal.setTime(nowDate);
-        if(sTime.compareTo("08:40:00") == 1) cal.add(Calendar.DAY_OF_MONTH, 1);
-        scheduledDate = sdf1.format(cal.getTime()) + scheduledTime;
-
+        if(sTime.compareTo(scheduledTime) == 1){
+            cal.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        scheduledDate = sdf1.format(cal.getTime()) + " " + scheduledTime;
         System.out.println("Enter your zoom meeting on " + scheduledDate + ".");
-        timer.schedule(task, sdf2.parse(scheduledDate));
+        timer.schedule(task, sdf2.parse(scheduledDate));  
     }
 }
