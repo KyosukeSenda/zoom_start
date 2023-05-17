@@ -1,1 +1,1 @@
-start zoommtg:"//zoom.us/join?confno={ZOOM ID with "NO" space}&pwd=n-{PASSWORD}"
+start zoommtg:"//zoom.us/join?confno={ZOOM ID with "NO" space}&pwd={PASSWORD}"
