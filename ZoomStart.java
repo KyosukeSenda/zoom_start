@@ -41,7 +41,7 @@ public class ZoomStart{
 
         
         cal.setTime(nowDate);
-        if(sTime.compareTo(scheduledTime) == 1){
+        if(sTime.compareTo(scheduledTime) >= 1){
             cal.add(Calendar.DAY_OF_MONTH, 1);
         }
         scheduledDate = sdf1.format(cal.getTime()) + " " + scheduledTime;
