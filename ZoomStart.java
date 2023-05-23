@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class ZoomStart{
     public static void main(String[] args) throws ParseException {
-        String scheduledTime = "08:20:00"; // (TO DO) Set time you enter the meeting room.(Format: "HH:mm:ss")
+        String scheduledTime = "08:30:00"; // (TO DO) Set time you enter the meeting room.(Format: "HH:mm:ss")
         scheduledDate(scheduledTime);
     }
 
@@ -41,7 +41,7 @@ public class ZoomStart{
 
         
         cal.setTime(nowDate);
-        if(sTime.compareTo(scheduledTime) >= 1){
+        if(sTime.compareTo(scheduledTime) >= 0){
             cal.add(Calendar.DAY_OF_MONTH, 1);
         }
         scheduledDate = sdf1.format(cal.getTime()) + " " + scheduledTime;
